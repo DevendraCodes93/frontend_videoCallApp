@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { io } from "socket.io-client";
 import { useAuthStore } from "./userStore.js";
-const BASE_URL = "https://videocall-289k.onrender.com";
+const BASE_URL = "https://videocall-289k.onrender.com/api";
 export const useVideoStore = create((set, get) => ({
   socket: null,
   localVideo: null, // 💧 MediaStream

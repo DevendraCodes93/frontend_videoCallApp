@@ -16,7 +16,7 @@ export const useAuthStore = create((set, get) => ({
       if (response.status == 201) {
         set({ authUser: response.data });
         toast.success("User registered successfully");
-
+        localStorage.setItem("token", JSON.stringify(response.data.token));
         return true;
       }
     } catch (error) {
@@ -33,6 +33,7 @@ export const useAuthStore = create((set, get) => ({
       if (response.status == 201) {
         set({ authUser: response.data });
         toast.success("User loggedIn successfully");
+        localStorage.setItem("token", JSON.stringify(response.data.token));
         return true;
       }
     } catch (error) {
