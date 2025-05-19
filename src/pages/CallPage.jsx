@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useVideoStore } from "../store/videoStore";
 import { useNavigate } from "react-router-dom";
 import { MdCallEnd } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const CallPage = () => {
   const {
@@ -112,6 +113,7 @@ const CallPage = () => {
 
     socket.on("user-disconnected", () => {
       navigate("/");
+      toast.error("User disconnected 🤦‍♂️🤷‍♂️");
     });
 
     return () => {
