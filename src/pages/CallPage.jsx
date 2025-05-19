@@ -120,8 +120,8 @@ const CallPage = () => {
         socket.off("room-joined");
         socket.off("ready");
         socket.off("user-disconnected");
+        // disconnectSocket(roomID);
       }
-      disconnectSocket(roomID);
     };
   }, [
     socket,
