@@ -58,7 +58,27 @@ const CallPage = () => {
   const handleMouseUp = () => {
     setDragging(false);
   };
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    offset.current = {
+      x: touch.clientX - position.x,
+      y: touch.clientY - position.y,
+    };
+    setDragging(true);
+  };
 
+  const handleTouchMove = (e) => {
+    if (!dragging) return;
+    const touch = e.touches[0];
+    setPosition({
+      x: touch.clientX - offset.current.x,
+      y: touch.clientY - offset.current.y,
+    });
+  };
+
+  const handleTouchEnd = () => {
+    setDragging(false);
+  };
   useEffect(() => {
     if (!socket) {
       navigate("/");
@@ -194,6 +214,9 @@ const CallPage = () => {
           muted
           playsInline
           onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           className="w-32 h-48 object-cover rounded-2xl transform scale-x-[-1] z-10 cursor-move absolute"
           style={{
             left: `${position.x}px`,
