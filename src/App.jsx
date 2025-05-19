@@ -17,14 +17,14 @@ const App = () => {
   useEffect(() => {
     checkAuthDetails();
   }, []);
-  // useEffect(() => {
-  //   if (authUser) {
-  //     connectSocket();
-  //     navigate("/");
-  //   } else {
-  //     navigate("/login");
-  //   }
-  // }, [authUser]);
+  useEffect(() => {
+    if (authUser) {
+      connectSocket();
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  }, [authUser]);
   if (isCheckingAuth) {
     return (
       <div className="flex items-center justify-center h-screen">
