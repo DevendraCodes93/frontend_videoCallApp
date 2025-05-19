@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { io } from "socket.io-client";
 import { useAuthStore } from "./userStore.js";
-const BASE_URL = "https://videocall-289k.onrender.com/api";
+const BASE_URL = "https://videocall-289k.onrender.com";
 export const useVideoStore = create((set, get) => ({
   socket: null,
   localVideo: null,
@@ -21,6 +21,8 @@ export const useVideoStore = create((set, get) => ({
     if (!authUser || get().socket?.connected) return;
     const socket = io(BASE_URL, {
       query: { userId: authUser.user._id },
+      transports: ["websocket"],
+      withCredentials: true,
     });
     socket.connect();
     set({ socket });
